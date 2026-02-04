@@ -232,7 +232,7 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] text-slate-900 font-sans selection:bg-[#2B6B7C] selection:text-white">
+    <div className="min-h-screen bg-transparent text-slate-900 font-sans selection:bg-[#2B6B7C] selection:text-white">
       
       {/* Contact Reveal Modal */}
       {renderContactModal()}

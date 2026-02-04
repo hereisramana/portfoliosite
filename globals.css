@@ -5,8 +5,11 @@
   --color-primary: #2B6B7C;
   --color-primary-accent: #3A8CA3;
   --color-primary-container: #B7EAF7;
-  --color-surface: #FAFAFA;
-  --color-surface-card: #F8FDFF;
+  
+  /* Updated Surface Colors for Aerogel Theme */
+  --color-surface: #F4F5F9; 
+  --color-surface-card: #FFFFFF;
+  
   --color-error: #BA1A1A;
   --color-text-body: #191C1D;
   --color-text-subtle: #3F484B;
@@ -14,15 +17,49 @@
   /* Fonts */
   --font-heading: 'Montserrat', sans-serif;
   --font-sans: 'IBM Plex Sans', sans-serif;
+
+  /* 
+   * "Deep Glass" Shadows 
+   * Tinted with #C0C5D6 instead of black/gray to match the Aerogel White aesthetic.
+   */
+  --shadow-xs: 0 1px 2px 0 rgba(192, 197, 214, 0.5);
+  --shadow-sm: 0 1px 3px 0 rgba(192, 197, 214, 0.5), 0 1px 2px -1px rgba(192, 197, 214, 0.1);
+  --shadow-md: 0 4px 6px -1px rgba(192, 197, 214, 0.5), 0 2px 4px -2px rgba(192, 197, 214, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(192, 197, 214, 0.5), 0 4px 6px -4px rgba(192, 197, 214, 0.1);
+  --shadow-xl: 0 20px 60px -15px rgba(192, 197, 214, 0.6); /* The specific "Deep Glass" shadow requested */
+  --shadow-2xl: 0 25px 50px -12px rgba(192, 197, 214, 0.5);
 }
 
-/* Custom Reset */
+/* Custom Reset & Aerogel Atmosphere */
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-surface);
+  
+  /* 1. The Invisible Gradient: Mimics a spotlight from above */
+  background: radial-gradient(circle at 50% 0%, #FFFFFF 0%, #F4F5F9 100%);
+  background-attachment: fixed; /* Ensures the light source stays at the top while scrolling */
+  
   color: #1F1F1F;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 2. The Micro-Grain: CSS-generated noise texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Allows clicking through the noise */
+  z-index: -1; /* Sits behind the content */
+  
+  /* SVG Noise Data URI */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+  
+  opacity: 0.15; /* Subtle analog texture */
+  mix-blend-mode: multiply;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {
