@@ -1,5 +1,4 @@
 import React from 'react';
-import { TOKENS } from '../types';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'text';

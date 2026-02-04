@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { PROJECTS, ABOUT_TEXT, SKILLS } from './constants';
-import { Project, ViewState } from './types';
+import { ViewState } from './types';
 import { ProjectCard } from './components/ProjectCard';
 import { ProjectDetail } from './components/ProjectDetail';
 import { Button } from './components/Button';
