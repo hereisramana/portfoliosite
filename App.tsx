@@ -6,7 +6,7 @@ import { ProjectDetail } from './components/ProjectDetail';
 import { Button } from './components/Button';
 import { Menu, X, Mail, Github, Linkedin, Phone, Copy, Check } from 'lucide-react';
 
-const App: React.FC = () => {
+export const App: React.FC = () => {
   const [view, setView] = useState<ViewState>('HOME');
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -43,17 +43,17 @@ const App: React.FC = () => {
     if (!isContactModalOpen) return null;
     return (
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6">
-        {/* Backdrop */}
+        {/* Backdrop - darker blur */}
         <div 
-          className="absolute inset-0 bg-slate-900/40 backdrop-blur-sm animate-in fade-in duration-300"
+          className="absolute inset-0 bg-slate-900/20 backdrop-blur-md animate-in fade-in duration-500"
           onClick={() => setIsContactModalOpen(false)}
         />
         
-        {/* Modal Card */}
-        <div className="relative bg-white w-full max-w-md rounded-[32px] shadow-2xl p-8 animate-in zoom-in-95 fade-in duration-300">
+        {/* Modal Card - Liquid Glass */}
+        <div className="relative liquid-card w-full max-w-md rounded-[32px] p-8 animate-in zoom-in-95 fade-in duration-300 shadow-2xl">
           <button 
             onClick={() => setIsContactModalOpen(false)}
-            className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-full transition-colors"
+            className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 hover:bg-white/50 rounded-full transition-colors"
             aria-label="Close modal"
           >
             <X className="w-5 h-5" />
@@ -64,9 +64,9 @@ const App: React.FC = () => {
 
           <div className="space-y-4">
             {/* Email Field */}
-            <div className="group relative bg-[#F0F9FB] border border-[#2B6B7C]/10 rounded-2xl p-4 flex items-center justify-between hover:border-[#2B6B7C]/30 transition-all">
+            <div className="group relative bg-white/40 border border-white/60 rounded-2xl p-4 flex items-center justify-between hover:bg-white/60 hover:border-white transition-all shadow-sm">
               <div className="flex items-center gap-4">
-                <div className="p-2 bg-white rounded-xl text-[#2B6B7C]">
+                <div className="p-2 bg-white rounded-xl text-[#2B6B7C] shadow-sm">
                   <Mail className="w-5 h-5" />
                 </div>
                 <div>
@@ -86,9 +86,9 @@ const App: React.FC = () => {
             </div>
 
             {/* Phone Field */}
-            <div className="group relative bg-[#F0F9FB] border border-[#2B6B7C]/10 rounded-2xl p-4 flex items-center justify-between hover:border-[#2B6B7C]/30 transition-all">
+            <div className="group relative bg-white/40 border border-white/60 rounded-2xl p-4 flex items-center justify-between hover:bg-white/60 hover:border-white transition-all shadow-sm">
               <div className="flex items-center gap-4">
-                <div className="p-2 bg-white rounded-xl text-[#2B6B7C]">
+                <div className="p-2 bg-white rounded-xl text-[#2B6B7C] shadow-sm">
                   <Phone className="w-5 h-5" />
                 </div>
                 <div>
@@ -133,7 +133,7 @@ const App: React.FC = () => {
       
       case 'ABOUT':
         return (
-          <div className="max-w-3xl mx-auto px-4 py-12">
+          <div className="max-w-3xl mx-auto px-4 py-12 animate-in fade-in slide-in-from-bottom-4 duration-500">
              <h1 className="text-4xl font-bold text-slate-900 mb-8">About Me</h1>
              <div className="prose prose-lg text-slate-600 leading-relaxed mb-12">
                {ABOUT_TEXT.split('\n').map((paragraph, idx) => (
@@ -141,7 +141,7 @@ const App: React.FC = () => {
                ))}
              </div>
 
-             <div className="mb-12 border-t border-slate-100 pt-10">
+             <div className="mb-12 border-t border-slate-200/50 pt-10">
                 <h2 className="text-2xl font-bold text-slate-900 mb-6">Skills & Expertise</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   {SKILLS.map((skillGroup) => (
@@ -153,7 +153,7 @@ const App: React.FC = () => {
                         {skillGroup.items.map((skill) => (
                           <span 
                             key={skill}
-                            className="px-3 py-1.5 bg-[#F0F9FB] text-[#2B6B7C] text-sm font-medium rounded-lg border border-[#2B6B7C]/10"
+                            className="px-3 py-1.5 bg-white/50 text-[#2B6B7C] text-sm font-medium rounded-lg border border-[#2B6B7C]/10 backdrop-blur-sm"
                           >
                             {skill}
                           </span>
@@ -164,7 +164,7 @@ const App: React.FC = () => {
                 </div>
              </div>
              
-             <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm">
+             <div className="liquid-surface rounded-3xl p-8">
                 <h2 className="text-2xl font-bold text-slate-900 mb-6">Let's Connect</h2>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button 
@@ -198,7 +198,7 @@ const App: React.FC = () => {
         return (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             {/* Hero Section */}
-            <section className="mb-20 max-w-3xl">
+            <section className="mb-20 max-w-3xl animate-in fade-in slide-in-from-bottom-2 duration-700">
               <span className="text-[#3A8CA3] font-semibold tracking-wide uppercase text-sm mb-4 block font-heading">
                 Portfolio
               </span>
@@ -211,10 +211,10 @@ const App: React.FC = () => {
             </section>
 
             {/* Projects Grid */}
-            <section>
+            <section className="animate-in fade-in slide-in-from-bottom-4 delay-100 duration-700">
               <h2 className="text-2xl font-bold text-slate-900 mb-8 flex items-center">
                 Selected Work
-                <div className="h-px bg-slate-200 flex-1 ml-6"></div>
+                <div className="h-px bg-slate-200/50 flex-1 ml-6"></div>
               </h2>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
                 {PROJECTS.map(project => (
@@ -237,8 +237,8 @@ const App: React.FC = () => {
       {/* Contact Reveal Modal */}
       {renderContactModal()}
 
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+      {/* Navigation - Liquid Glass */}
+      <nav className="sticky top-0 z-50 liquid-surface border-b-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16 items-center">
             
@@ -280,7 +280,7 @@ const App: React.FC = () => {
             <div className="md:hidden">
               <button 
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 text-slate-600 hover:bg-slate-50 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B6B7C]"
+                className="p-2 text-slate-600 hover:bg-slate-50/50 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#2B6B7C]"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -291,22 +291,22 @@ const App: React.FC = () => {
 
         {/* Mobile Menu Overlay */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-16 left-0 w-full bg-white border-b border-slate-100 shadow-xl p-4 flex flex-col gap-4 animate-in slide-in-from-top-2">
+          <div className="md:hidden absolute top-16 left-0 w-full liquid-surface border-t border-slate-100/50 p-4 flex flex-col gap-4 animate-in slide-in-from-top-2">
             <button 
               onClick={() => handleNavClick('HOME')} 
-              className="text-left px-4 py-3 rounded-lg hover:bg-slate-50 font-medium text-slate-900"
+              className="text-left px-4 py-3 rounded-lg hover:bg-slate-50/50 font-medium text-slate-900"
             >
               Work
             </button>
             <button 
               onClick={() => handleNavClick('ABOUT')} 
-              className="text-left px-4 py-3 rounded-lg hover:bg-slate-50 font-medium text-slate-900"
+              className="text-left px-4 py-3 rounded-lg hover:bg-slate-50/50 font-medium text-slate-900"
             >
               About
             </button>
              <button 
               onClick={() => setIsContactModalOpen(true)} 
-              className="text-left px-4 py-3 rounded-lg hover:bg-slate-50 font-medium text-[#2B6B7C]"
+              className="text-left px-4 py-3 rounded-lg hover:bg-slate-50/50 font-medium text-[#2B6B7C]"
             >
               Contact Me
             </button>
@@ -318,7 +318,7 @@ const App: React.FC = () => {
         {renderContent()}
       </main>
 
-      <footer className="bg-white border-t border-slate-100 py-12 mt-12">
+      <footer className="bg-white/40 backdrop-blur-md border-t border-slate-200/50 py-12 mt-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-slate-500 text-sm">
             © {new Date().getFullYear()} Portfolio. Built with Material 3 & React.
@@ -336,5 +336,3 @@ const App: React.FC = () => {
     </div>
   );
 };
-
-export default App;

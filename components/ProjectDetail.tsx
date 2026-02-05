@@ -16,14 +16,14 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
   }, [project.id]);
 
   return (
-    <article className="relative animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <article className="relative animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out">
       
-      {/* Floating Back Button - Restricted to top left, transparent style */}
+      {/* Floating Back Button */}
       <div className="sticky top-20 z-40 pointer-events-none h-0">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4">
           <button 
             onClick={onBack}
-            className="pointer-events-auto flex items-center justify-center w-12 h-12 bg-transparent border border-slate-200 rounded-full hover:bg-slate-100/50 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2B6B7C] focus-visible:ring-offset-2"
+            className="liquid-surface pointer-events-auto flex items-center justify-center w-12 h-12 rounded-full hover:bg-white/80 transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#2B6B7C] focus-visible:ring-offset-2 active:scale-95"
             aria-label="Back to projects"
           >
             <ArrowLeft className="w-5 h-5 text-[#2B6B7C] group-hover:-translate-x-1 transition-transform duration-300" />
@@ -31,13 +31,13 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
         </div>
       </div>
 
-      {/* Main Content Container - Spacing adjusted to start below the button */}
+      {/* Main Content Container */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 pt-24 md:pt-32">
         
         {/* Header Section */}
         <header className="mb-12">
           <div className="mb-4">
-            <span className="px-3 py-1 bg-[#F0F9FB] text-[#2B6B7C] text-xs font-semibold uppercase tracking-widest rounded-full border border-[#2B6B7C]/10">
+            <span className="px-3 py-1 bg-[#F0F9FB]/50 backdrop-blur-sm text-[#2B6B7C] text-xs font-semibold uppercase tracking-widest rounded-full border border-[#2B6B7C]/20">
               Case Study
             </span>
           </div>
@@ -50,7 +50,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
         </header>
 
         {/* Hero Media Container */}
-        <div className="w-full h-[400px] md:h-[500px] bg-[#F0F9FB] rounded-3xl overflow-hidden mb-12 shadow-sm border border-slate-100 relative">
+        <div className="w-full h-[400px] md:h-[500px] bg-[#F0F9FB] rounded-[32px] overflow-hidden mb-12 shadow-sm border border-white/50 relative z-10">
           {project.videoUrl ? (
             <video 
               src={project.videoUrl}
@@ -71,10 +71,10 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
           )}
         </div>
 
-        {/* Metadata Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 p-8 bg-white rounded-3xl border border-slate-100 shadow-sm">
+        {/* Metadata Grid - Liquid Surface */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 p-8 liquid-surface rounded-[32px]">
           <div className="flex items-start gap-4">
-            <div className="p-3 bg-[#F0F9FB] rounded-2xl text-[#2B6B7C]">
+            <div className="p-3 bg-white/60 rounded-2xl text-[#2B6B7C]">
               <User className="w-5 h-5" />
             </div>
             <div>
@@ -83,7 +83,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
             </div>
           </div>
           <div className="flex items-start gap-4">
-            <div className="p-3 bg-[#F0F9FB] rounded-2xl text-[#2B6B7C]">
+            <div className="p-3 bg-white/60 rounded-2xl text-[#2B6B7C]">
               <Clock className="w-5 h-5" />
             </div>
             <div>
@@ -111,7 +111,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
                 <Target className="w-5 h-5 text-[#BA1A1A]" />
                 The Challenge
               </h2>
-              <div className="prose text-slate-600 leading-relaxed bg-[#FFF8F8] p-8 rounded-[32px] border border-red-50">
+              <div className="prose text-slate-600 leading-relaxed bg-[#FFF8F8]/80 backdrop-blur-sm p-8 rounded-[32px] border border-red-100/50">
                 <p>{project.challenge}</p>
               </div>
             </section>
@@ -121,7 +121,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
                 <Lightbulb className="w-5 h-5 text-[#A3823A]" />
                 The Solution
               </h2>
-              <div className="prose text-slate-600 leading-relaxed bg-[#FFFEF0] p-8 rounded-[32px] border border-amber-50">
+              <div className="prose text-slate-600 leading-relaxed bg-[#FFFEF0]/80 backdrop-blur-sm p-8 rounded-[32px] border border-amber-100/50">
                 <p>{project.solution}</p>
               </div>
             </section>
@@ -136,16 +136,17 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
               <p>{project.interactionNotes}</p>
             </div>
             
-            {/* Live Prototype Link or Interaction Placeholder */}
+            {/* Live Prototype Link */}
             {project.liveUrl ? (
                <a 
                  href={project.liveUrl}
                  target="_blank"
                  rel="noopener noreferrer"
-                 className="mt-10 group relative block w-full overflow-hidden rounded-[40px] border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300"
+                 className="mt-10 group relative block w-full overflow-hidden rounded-[40px] border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-500 ease-spring"
+                 style={{ transitionTimingFunction: 'var(--ease-spring)' } as React.CSSProperties}
                  aria-label={`Launch live prototype for ${project.title}`}
                >
-                 {/* Visual Preview (Background) */}
+                 {/* Visual Preview */}
                  <div className="absolute inset-0 h-full w-full bg-slate-900">
                    <img 
                      src={project.heroUrl} 
@@ -157,7 +158,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
                  
                  {/* Content Overlay */}
                  <div className="relative flex min-h-[360px] flex-col items-center justify-center p-8 text-center z-10">
-                   <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 transition-transform duration-300 group-hover:scale-110 shadow-xl">
+                   <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 transition-transform duration-500 group-hover:scale-110 shadow-xl" style={{ transitionTimingFunction: 'var(--ease-spring)' } as React.CSSProperties}>
                      <ExternalLink className="h-8 w-8 text-white drop-shadow-md" />
                    </div>
                    
@@ -168,15 +169,15 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
                      Experience the deployed application in a new tab.
                    </p>
 
-                   <div className="inline-flex items-center rounded-full bg-white px-8 py-4 text-base font-bold tracking-wide text-[#2B6B7C] shadow-lg transition-all hover:bg-[#E0F7FA] hover:scale-105 active:scale-95">
+                   <div className="inline-flex items-center rounded-full bg-white px-8 py-4 text-base font-bold tracking-wide text-[#2B6B7C] shadow-lg transition-all hover:bg-[#E0F7FA] hover:scale-105 active:scale-95 duration-300">
                      Open Project
                      <ExternalLink className="ml-2 h-4 w-4" />
                    </div>
                  </div>
                </a>
             ) : (
-              <div className="mt-10 p-12 bg-white rounded-[40px] border border-slate-100 shadow-inner flex flex-col items-center justify-center min-h-[320px] text-center">
-                <div className="w-20 h-20 bg-[#F0F9FB] rounded-full flex items-center justify-center mb-4 text-[#2B6B7C]">
+              <div className="mt-10 p-12 liquid-surface rounded-[40px] flex flex-col items-center justify-center min-h-[320px] text-center">
+                <div className="w-20 h-20 bg-white/60 rounded-full flex items-center justify-center mb-4 text-[#2B6B7C]">
                    <MousePointerClick className="w-8 h-8" />
                 </div>
                 <p className="text-slate-400 font-medium italic">Interactive Prototype / Micro-interaction Demo Placeholder</p>
@@ -195,7 +196,7 @@ export const ProjectDetail: React.FC<ProjectDetailProps> = ({ project, onBack })
 
         </div>
 
-        <div className="mt-24 pt-12 border-t border-slate-100 flex flex-col items-center gap-6">
+        <div className="mt-24 pt-12 border-t border-slate-200/50 flex flex-col items-center gap-6">
             <p className="text-slate-500 font-medium">Want to see more work?</p>
             <Button onClick={onBack} variant="secondary">
                 Return to Portfolio
